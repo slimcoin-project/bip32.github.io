@@ -1,18 +1,10 @@
 
 var BITCOIN_MAINNET_PUBLIC = 0x0488b21e;
 var BITCOIN_MAINNET_PRIVATE = 0x0488ade4;
-var BITCOIN_TESTNET_PUBLIC = 0x043587cf;
-var BITCOIN_TESTNET_PRIVATE = 0x04358394;
-var DOGECOIN_MAINNET_PUBLIC = 0x02facafd;
-var DOGECOIN_MAINNET_PRIVATE = 0x02fac398;
-var DOGECOIN_TESTNET_PUBLIC = 0x0432a9a8;
-var DOGECOIN_TESTNET_PRIVATE = 0x0432a243;
-var JUMBUCKS_MAINNET_PUBLIC = 0x037a689a;
-var JUMBUCKS_MAINNET_PRIVATE = 0x037a6460;
-var LITECOIN_MAINNET_PUBLIC = 0x019da462;
-var LITECOIN_MAINNET_PRIVATE = 0x019d9cfe;
-var LITECOIN_TESTNET_PUBLIC = 0x0436f6e1;
-var LITECOIN_TESTNET_PRIVATE = 0x0436ef7d;
+var SLIMCOIN_MAINNET_PRIVATE = 0xef69ea80;
+var SLIMCOIN_MAINNET_PUBLIC  = 0xef6adf10;
+var SLIMCOIN_TESTNET_PRIVATE = 0x04358394;
+var SLIMCOIN_TESTNET_PUBLIC = 0x043587CF;
 
 var BIP32 = function(bytes) {
     // decode base58
@@ -47,21 +39,13 @@ BIP32.prototype.init_from_bytes = function(bytes) {
 
     var is_private = 
         (this.version == BITCOIN_MAINNET_PRIVATE  ||
-         this.version == BITCOIN_TESTNET_PRIVATE  ||
-         this.version == DOGECOIN_MAINNET_PRIVATE ||
-         this.version == DOGECOIN_TESTNET_PRIVATE ||
-         this.version == JUMBUCKS_MAINNET_PRIVATE ||
-         this.version == LITECOIN_MAINNET_PRIVATE ||
-         this.version == LITECOIN_TESTNET_PRIVATE );
+         this.version == SLIMCOIN_MAINNET_PRIVATE ||
+         this.version == SLIMCOIN_TESTNET_PRIVATE );
 
     var is_public = 
         (this.version == BITCOIN_MAINNET_PUBLIC  ||
-         this.version == BITCOIN_TESTNET_PUBLIC  ||
-         this.version == DOGECOIN_MAINNET_PUBLIC ||
-         this.version == DOGECOIN_TESTNET_PUBLIC ||
-         this.version == JUMBUCKS_MAINNET_PUBLIC ||
-         this.version == LITECOIN_MAINNET_PUBLIC ||
-         this.version == LITECOIN_TESTNET_PUBLIC );
+         this.version == SLIMCOIN_MAINNET_PUBLIC ||
+         this.version == SLIMCOIN_TESTNET_PUBLIC );
 
     if( is_private && key_bytes[0] == 0 ) {
         this.eckey = new Bitcoin.ECKey(key_bytes.slice(1, 33));
@@ -95,29 +79,13 @@ BIP32.prototype.build_extended_public_key = function() {
     case BITCOIN_MAINNET_PRIVATE:
         v = BITCOIN_MAINNET_PUBLIC;
         break;
-    case BITCOIN_TESTNET_PUBLIC:
-    case BITCOIN_TESTNET_PRIVATE:
-        v = BITCOIN_TESTNET_PUBLIC;
+    case SLIMCOIN_MAINNET_PUBLIC:
+    case SLIMCOIN_MAINNET_PRIVATE:
+        v = SLIMCOIN_MAINNET_PUBLIC;
         break;
-    case DOGECOIN_MAINNET_PUBLIC:
-    case DOGECOIN_MAINNET_PRIVATE:
-        v = DOGECOIN_MAINNET_PUBLIC;
-        break;
-    case DOGECOIN_TESTNET_PUBLIC:
-    case DOGECOIN_TESTNET_PRIVATE:
-        v = DOGECOIN_TESTNET_PUBLIC;
-        break;
-    case JUMBUCKS_MAINNET_PUBLIC:
-    case JUMBUCKS_MAINNET_PRIVATE:
-        v = JUMBUCKS_MAINNET_PUBLIC;
-        break;
-    case LITECOIN_MAINNET_PUBLIC:
-    case LITECOIN_MAINNET_PRIVATE:
-        v = LITECOIN_MAINNET_PUBLIC;
-        break;
-    case LITECOIN_TESTNET_PUBLIC:
-    case LITECOIN_TESTNET_PRIVATE:
-        v = LITECOIN_TESTNET_PUBLIC;
+    case SLIMCOIN_TESTNET_PUBLIC:
+    case SLIMCOIN_TESTNET_PRIVATE:
+        v = SLIMCOIN_TESTNET_PUBLIC;
         break;
      default:
         throw new Error("Unknown version");
@@ -250,12 +218,8 @@ BIP32.prototype.derive_child = function(i) {
 
     var is_private = 
         (this.version == BITCOIN_MAINNET_PRIVATE  ||
-         this.version == BITCOIN_TESTNET_PRIVATE  ||
-         this.version == DOGECOIN_MAINNET_PRIVATE ||
-         this.version == DOGECOIN_TESTNET_PRIVATE ||
-         this.version == JUMBUCKS_MAINNET_PRIVATE ||
-         this.version == LITECOIN_MAINNET_PRIVATE ||
-         this.version == LITECOIN_TESTNET_PRIVATE);
+         this.version == SLIMCOIN_MAINNET_PRIVATE ||
+         this.version == SLIMCOIN_TESTNET_PRIVATE );
 
     if( use_private && (!this.has_private_key || !is_private) ) throw new Error("Cannot do private key derivation without private key");
 

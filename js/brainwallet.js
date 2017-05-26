@@ -10,9 +10,25 @@
     var TIMEOUT = 600;
     var timeout = null;
 
-    var coin = "btc_main";
+    var coin = "slm_main";
 
     var COINS = {
+        slm_main: {
+            name: "Slimcoin",
+            network: "Mainnet",
+            prefix: 0x3f,
+            private_prefix: 0x3f+0x80,
+            bip32_public: SLIMCOIN_MAINNET_PUBLIC,
+            bip32_private: SLIMCOIN_MAINNET_PRIVATE
+        },
+        slm_test: {
+            name: "Slimcoin",
+            network: "Testnet",
+            prefix: 0x6f,
+            private_prefix: 0x6f+0x80,
+            bip32_public: SLIMCOIN_TESTNET_PUBLIC,
+            bip32_private: SLIMCOIN_TESTNET_PRIVATE
+        },
         btc_main: {
             name: "Bitcoin",
             network: "Mainnet",
@@ -20,61 +36,13 @@
             private_prefix: 0+0x80,
             bip32_public: BITCOIN_MAINNET_PUBLIC,
             bip32_private: BITCOIN_MAINNET_PRIVATE
-        },
-        btc_test: {
-            name: "Bitcoin",
-            network: "Testnet",
-            prefix: 0x6f,
-            private_prefix: 0x6f+0x80,
-            bip32_public: BITCOIN_TESTNET_PUBLIC,
-            bip32_private: BITCOIN_TESTNET_PRIVATE
-        },
-        doge_main: {
-            name: "Dogecoin",
-            network: "Mainnet",
-            prefix: 0x1e,
-            private_prefix: 0x1e+0x80,
-            bip32_public: DOGECOIN_MAINNET_PUBLIC,
-            bip32_private: DOGECOIN_MAINNET_PRIVATE
-        },
-        doge_test: {
-            name: "Dogecoin",
-            network: "Testnet",
-            prefix: 0x71,
-            private_prefix: 0x71+0x80,
-            bip32_public: DOGECOIN_TESTNET_PUBLIC,
-            bip32_private: DOGECOIN_TESTNET_PRIVATE
-        },
-        jbs_main: {
-            name: "Jumbucks",
-            network: "Mainnet",
-            prefix: 0x2b,
-            private_prefix: 0x2b+0x80,
-            bip32_public: JUMBUCKS_MAINNET_PUBLIC,
-            bip32_private: JUMBUCKS_MAINNET_PRIVATE
-        },
-        ltc_main: {
-            name: "Litecoin",
-            network: "Mainnet",
-            prefix: 0x30,
-            private_prefix: 0x30+0x80,
-            bip32_public: LITECOIN_MAINNET_PUBLIC,
-            bip32_private: LITECOIN_MAINNET_PRIVATE
-        },
-        ltc_test: {
-            name: "Litecoin",
-            network: "Testnet",
-            prefix: 0x6f,
-            private_prefix: 0x6f+0x80,
-            bip32_public: LITECOIN_TESTNET_PUBLIC,
-            bip32_private: LITECOIN_TESTNET_PRIVATE
         }
     };
 
-    var PUBLIC_KEY_VERSION = 0;
-    var PRIVATE_KEY_VERSION = 0x80;
+    var PUBLIC_KEY_VERSION = 0x3f;
+    var PRIVATE_KEY_VERSION = 0x3f + 0x80;
     var ADDRESS_URL_PREFIX = 'http://blockchain.info/address/'
-    var BIP32_TYPE = BITCOIN_MAINNET_PRIVATE;
+    var BIP32_TYPE = SLIMCOIN_MAINNET_PRIVATE;
 
     function pad(str, len, ch) {
         padding = '';
@@ -188,7 +156,7 @@
 
     function updatePassphraseHash() {
         var hasher = new jsSHA(bip32_passphrase_hash, 'HEX');   
-        var I = hasher.getHMAC("Bitcoin seed", "TEXT", "SHA-512", "HEX");
+        var I = hasher.getHMAC("Slimcoin seed", "TEXT", "SHA-512", "HEX");
         var il = Crypto.util.hexToBytes(I.slice(0, 64));
         var ir = Crypto.util.hexToBytes(I.slice(64, 128));
 
@@ -535,7 +503,7 @@
         $('#gen_from label input').on('change', onUpdateGenFrom );
         updateGenFrom();
 
-        $("#bip32_source_passphrase").val("crazy horse battery staple");
+        $("#bip32_source_passphrase").val("collect gorse buttery stable");
         $("#bip32_source_key").val("xprv9s21ZrQH143K2JF8RafpqtKiTbsbaxEeUaMnNHsm5o6wCW3z8ySyH4UxFVSfZ8n7ESu7fgir8imbZKLYVBxFPND1pniTZ81vKfd45EHKX73");
         onInput("#bip32_source_passphrase", onUpdateSourcePassphrase);
 

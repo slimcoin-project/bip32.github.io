@@ -38,16 +38,17 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown" id="crCurrency">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="crSelect"><span id="crName">Bitcoin Mainnet</span>&nbsp;<b class="caret">&nbsp;</b></a>
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="crSelect"><span id="crName">Slimcoin Mainnet</span>&nbsp;<b class="caret">&nbsp;</b></a>
               <ul class="dropdown-menu">
+                <li><a href="#" id="slm_main">Slimcoin Mainnet</a></li>
+                <li><a href="#" id="slm_test">Slimcoin Testnet</a></li>
                 <li><a href="http://blockchain.info/address/" id="btc_main">Bitcoin Mainnet</a></li>
+                <!-- Unsupported right now
                 <li><a href="http://blockexplorer.com/testnet/address/" id="btc_test">Bitcoin Testnet</a></li>
                 <li><a href="http://block-explorer.com/address/" id="ltc_main">Litecoin Mainnet</a></li>
                 <li><a href="#" id="ltc_test">Litecoin Testnet</a></li>
                 <li><a href="http://dogechain.info/address/" id="doge_main">Dogecoin Mainnet</a></li>
                 <li><a href="#" id="doge_test">Dogecoin Testnet</a></li>
-                <li><a href="https://chainz.cryptoid.info/jbs/" id="jbs_main">Jumbucks Mainnet</a></li>
-                <!-- Unsupported right now
                 <li><a href="http://explorer.litecoin.net/address/" title="0x30">LTC</a></li>
                 <li><a href="http://explorer.dot-bit.org/a/" title="0x34">NMC</a></li>
                 <li><a href="http://ppc.cryptocoinexplorer.com/address/" title="0x37">PPC</a></li>
@@ -55,6 +56,7 @@
                 <li><a href="http://nvc.cryptocoinexplorer.com/address/" title="0x08">NVC</a></li>
                 <li><a href="http://trc.cryptocoinexplorer.com/address/" title="0x00">TRC</a></li>
                 <li><a href="http://ftc.cryptocoinexplorer.com/address/" title="0x0E">FTC</a></li>
+                <li><a href="https://chainz.cryptoid.info/jbs/" id="jbs_main">Jumbucks Mainnet</a></li>
                 -->
               </ul></li>
           </ul>
@@ -75,7 +77,8 @@
                     <label class="btn btn-default active" title="Single SHA256"><input id="from_pass" name="gen_from" type="radio" />Passphrase</label>
                     <label class="btn btn-default" title="Base58-encoded"><input id="from_key" name="gen_from" type="radio" />BIP32 Key</label>
                   </div>
-                  &nbsp;&nbsp;<span class="help-inline" id="gen_from_msg"></span>
+                  &nbsp;&nbsp;<span class="help-inline" id="gen_from_msg"></span>
+
                 </div>
               </div>
               <div class="form-group">
